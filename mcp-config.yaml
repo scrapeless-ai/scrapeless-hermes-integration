@@ -1,0 +1,12 @@
+# Merge this entry into the active Hermes profile; preserve other configuration.
+mcp_servers:
+  scrapeless:
+    command: npx
+    args: ["-y", "scrapeless-mcp-server@0.6.3"]
+    env:
+      SCRAPELESS_API_KEY: "${SCRAPELESS_API_KEY}"
+    enabled: true
+    tools:
+      include: ["scrape_markdown"]
+      resources: false
+      prompts: false

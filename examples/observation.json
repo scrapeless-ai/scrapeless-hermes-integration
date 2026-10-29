@@ -1,0 +1,9 @@
+{
+  "observation_date": "2026-10-29",
+  "hermes_version": "0.22.5",
+  "mcp_package": "scrapeless-mcp-server@0.6.3",
+  "tool": "mcp__scrapeless__scrape_markdown",
+  "extraction_calls": 1,
+  "source_characters": 15641,
+  "published_example": "Selected original English output from the retained run; no new model response"
+}

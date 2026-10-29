@@ -1,0 +1,2 @@
+# The exporter uses the Python 3.10+ standard library only.
+# Install Hermes Agent separately using its official instructions.
