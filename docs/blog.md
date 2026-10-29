@@ -25,7 +25,7 @@ Start by finding the requirements for your platform, then confirm their conditio
 
 ## 1. Prepare the project and connection
 
-Follow the [Repo quick start](../README.md#quick-start) to download and enter the project directory. Prepare Python 3.10+, the supported **Hermes v0.22.5**, a configured model, and a Scrapeless API key.
+Follow the [exporter quick start](python-exporter.md#quick-start) to download and enter the project directory. Prepare Python 3.10+, the supported **Hermes v0.22.5**, a configured model, and a Scrapeless API key.
 
 The model organizes the material; Scrapeless reads the page. They incur separate usage. See the [integration guide](hermes.md#configure-mcp-in-hermes) for credentials and MCP configuration, and the Repo for pinned Hermes installation instructions.
 
