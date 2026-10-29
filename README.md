@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://app.scrapeless.com/passport/login?redirect=%2Fquick-start&utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-web-reader&utm_content=repository-readme"><img src="assets/scrapeless-logo-horizontal.png" alt="Scrapeless" width="280" style="width:280px;max-width:100%;height:auto" /></a>
+  <a href="https://app.scrapeless.com/passport/login?redirect=%2Fquick-start&utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-web-reader&utm_content=repository-readme"><img src="assets/scrapeless-logo.png" alt="Scrapeless" width="280" style="width:280px;max-width:100%;height:auto" /></a>
 </p>
 
 # Use Scrapeless in Hermes Agent
