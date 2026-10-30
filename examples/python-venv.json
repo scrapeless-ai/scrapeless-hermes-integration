@@ -1,7 +1,0 @@
-{
-  "url": "https://docs.python.org/3.12/library/venv.html",
-  "expected_text": [
-    "Creating virtual environments",
-    "How venvs work"
-  ]
-}

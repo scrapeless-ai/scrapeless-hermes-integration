@@ -4,7 +4,7 @@
 
 # Use Scrapeless in Hermes Agent
 
-**[Official documentation](docs/hermes.md) · [Practical Blog](docs/blog.md)**
+**[Scrapeless MCP documentation](https://docs.scrapeless.com/en/docs/developer-tools/scrapeless-mcp/overview/?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-web-reader&utm_content=repository-readme) · [Hermes MCP integration guide](https://www.scrapeless.com/en/blog/hermes-agent-scrapeless-mcp?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-web-reader&utm_content=repository-readme)**
 
 Give Hermes a request. It can use Scrapeless to search the web, extract page content, or operate a cloud browser, then organize the returned information into a useful answer.
 
@@ -57,7 +57,7 @@ The paths below use the default `~/.hermes/` profile. For a separate profile or 
 
 ### 1. Save your Scrapeless API key
 
-Open `~/.hermes/.env` in a text editor and add this line. Replace the placeholder and save. If the line already exists, update its value instead of adding another copy.
+Use [.env.example](.env.example) as a reference. Open `~/.hermes/.env` in a text editor and add this line. Replace the placeholder and save. If the line already exists, update its value instead of adding another copy.
 
 ```dotenv
 SCRAPELESS_API_KEY=YOUR_SCRAPELESS_API_KEY
@@ -65,7 +65,7 @@ SCRAPELESS_API_KEY=YOUR_SCRAPELESS_API_KEY
 
 ### 2. Add the MCP server
 
-Open `~/.hermes/config.yaml` and merge this configuration. If `mcp_servers` already exists, add `scrapeless` below it. Update an existing entry of that name rather than duplicating it, and preserve other settings.
+Open `~/.hermes/config.yaml` and merge this configuration, also provided in [mcp-config.yaml](mcp-config.yaml). If `mcp_servers` already exists, add `scrapeless` below it. Update an existing entry of that name rather than duplicating it, and preserve other settings.
 
 ```yaml
 mcp_servers:
@@ -143,7 +143,7 @@ In the tool details, check that Hermes uses `mcp__scrapeless__scrape_markdown` w
 
 *Hermes returns a source link and a checklist based on the page.*
 
-The example answer covers Git/curl/tar/SHA-256 utilities, the documented Python runtime, and the installer-managed uv tool. See the [sample checklist](examples/live-checklist-excerpt.md) for the output format. The answer can vary as the source page changes.
+The example answer covers Git/curl/tar/SHA-256 utilities, the documented Python runtime, and the installer-managed uv tool. See the [sample checklist](examples/checklist.en.md) for the output format. The answer can vary as the source page changes.
 
 Read or copy the answer in Hermes, and follow the source link to check the requirements for your platform.
 
@@ -175,21 +175,76 @@ For search or browser capabilities, add the corresponding tool names to the exis
 
 ## Optional example: Python file export
 
-To save the page, checklist, and JSON report automatically, use the [Python exporter](docs/python-exporter.md). It requires Python 3.10+ with SQLite and supports Hermes v0.22.5. Its installation, commands, parameters, and output examples are documented separately.
+To save the extracted page, answer, and report automatically, use `hermes_reader.py`. This optional exporter requires Python 3.10+ with SQLite, uses only the standard library, and supports **Hermes v0.22.5 only**. The version restriction applies to this exporter, not ordinary MCP chat.
 
-<a id="a-real-topic-to-checklist-run"></a>
+### Download and try the offline example
 
-The [Python virtual-environment example](docs/python-exporter.md#a-real-topic-to-checklist-run) shows how to organize a specified page around a topic.
+Select **Code > Download ZIP** on this repository, extract it, and open the extracted project directory in your terminal. Confirm that `hermes_reader.py`, `config.json`, and `examples/` are present. No Python package installation is required.
+
+```bash
+python3 hermes_reader.py demo
+```
+
+This writes selected retained source text and English checklist items to `output/demo/` without model or Scrapeless requests. The included [sample checklist](examples/checklist.en.md) is an excerpt, not a new live result. On Windows, use `py -3` instead of `python3`; live execution also requires a Hermes-supported environment.
+
+### Check compatibility and export a page
+
+For live export, use a Hermes v0.22.5 installation with a configured model, the MCP entry above, and an initialized session database. For a fresh installation, the [Hermes installer](https://hermes-agent.nousresearch.com/docs/getting-started/installation) accepts the commit behind v0.22.5:
+
+```bash
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh -o /tmp/hermes-install.sh
+bash /tmp/hermes-install.sh --commit bf0203a794a07aac3ff764972ab9087baa4e4f4e
+hermes --version
+hermes model
+hermes chat
+```
+
+Use these installation commands only for a fresh environment. Keep an existing installation intact. Choose your tool-capable model and complete one normal chat so the active profile's `state.db` exists. Model setup and chat can consume the model provider's credits. The repository-local `.env` is not loaded by the exporter; keep credentials in the active Hermes profile as described above.
+
+```bash
+python3 hermes_reader.py check
+python3 hermes_reader.py run --config config.json --output output/first-live
+```
+
+`check` inspects the local version, CLI options, extraction-only tool selection, and database schema without model or extraction requests. `run` starts a new paid-capable Hermes and Scrapeless task. Resolve a failed preflight before running it.
+
+| Output | Contents |
+| --- | --- |
+| `page.md` | Complete stored extraction for a live run; source excerpt for the offline demo |
+| `checklist.md` | Hermes's answer with a source link; selected retained items for the demo |
+| `report.json` | Run mode, source, validation result, content hash, and provenance |
+
+### Configure another task
+
+Edit `url` and `expected_text` in [config.json](config.json). The target must be a public HTTPS URL without embedded credentials, query parameters, or fragments. `expected_text` contains case-sensitive phrases expected on that page. The optional `topic` focuses the answer on that source; it accepts 1-200 characters on one line.
+
+```bash
+python3 hermes_reader.py run --config config.json --topic "Installation prerequisites" --output output/topic
+python3 hermes_reader.py --help
+```
+
+Use a fresh or empty output directory for each run. `--url` overrides the target and clears the old page's expected phrases; without new phrases, validation checks only for nonempty text. `--timeout` accepts 30-600 seconds (default 180), `--hermes` selects the Hermes executable, and `--state-db` selects the active profile's database. Otherwise the database is resolved from `HERMES_HOME`, defaulting to `~/.hermes/state.db`.
+
+The exporter validates the completed event stream, then reads the matching session's full extraction from `state.db` in read-only mode. Unexpected tools and repeated extractions are rejected after execution; this check does not impose a spending cap. The wrapper does not retry. After a timeout or provider error, inspect Hermes History before starting another task. Compare generated conclusions with `page.md`.
+
+### Development
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 hermes_reader.py demo --output output/test-demo
+```
+
+The tests and GitHub Actions workflow run offline. Keep credentials, session databases, and generated output out of commits. This project uses the [MIT license](LICENSE).
 
 ## Related projects
 
-- [Scrapeless MCP Server](https://github.com/scrapeless-ai/scrapeless-mcp-server?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-web-reader&utm_content=repository-readme): The tool service connected to Hermes.
-- [Scrapeless CLI](https://github.com/scrapeless-ai/scrapeless-cli?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-web-reader&utm_content=repository-readme): Use Scrapeless from your terminal.
+- [Scrapeless MCP Server](https://docs.scrapeless.com/en/docs/developer-tools/scrapeless-mcp/overview/?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-web-reader&utm_content=repository-readme): The tool service connected to Hermes.
+- [Scrapeless CLI](https://docs.scrapeless.com/en/docs/developer-tools/cli/?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-web-reader&utm_content=repository-readme): Use Scrapeless from your terminal.
 
 ## Learn more
 
-- [Official Hermes integration guide](docs/hermes.md)
-- [Technical Blog](docs/blog.md)
+- [Scrapeless MCP documentation](https://docs.scrapeless.com/en/docs/developer-tools/scrapeless-mcp/overview/?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-web-reader&utm_content=repository-readme)
+- [Hermes MCP integration guide](https://www.scrapeless.com/en/blog/hermes-agent-scrapeless-mcp?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-web-reader&utm_content=repository-readme)
 - [Hermes installation](https://hermes-agent.nousresearch.com/docs/getting-started/installation)
 - [Hermes MCP configuration](https://hermes-agent.nousresearch.com/docs/reference/mcp-config-reference)
 
