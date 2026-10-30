@@ -19,8 +19,6 @@ Connect Scrapeless MCP to Hermes, then ask Hermes to read a page and return a so
   <a href="https://www.linkedin.com/company/scrapeless/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-web-reader&amp;utm_content=repository-readme"><img src="assets/linkedin.png" alt="Follow Scrapeless on LinkedIn" width="190" height="28" /></a>
 </p>
 
-[Capabilities](#what-can-hermes-call) · [Prerequisites](#prerequisites) · [Configuration](#connection-configuration) · [Verify the connection](#verify-the-connection) · [Real example](#example-read-a-webpage-with-scrapeless) · [Tools and inputs](#tools-and-common-inputs) · [Troubleshooting](#troubleshooting) · [Optional Python exporter](#optional-example-python-file-export)
-
 ## What can Hermes call?
 
 Hermes interprets your request and organizes the answer. Scrapeless provides web data and browser tools, available to Hermes through MCP.
@@ -57,7 +55,7 @@ The paths below use the default `~/.hermes/` profile. For a separate profile or 
 
 ### 1. Save your Scrapeless API key
 
-Use [.env.example](.env.example) as a reference. Open `~/.hermes/.env` in a text editor and add this line. Replace the placeholder and save. If the line already exists, update its value instead of adding another copy.
+Use `.env.example` as a reference. Open `~/.hermes/.env` in a text editor and add this line. Replace the placeholder and save. If the line already exists, update its value instead of adding another copy.
 
 ```dotenv
 SCRAPELESS_API_KEY=YOUR_SCRAPELESS_API_KEY
@@ -65,7 +63,7 @@ SCRAPELESS_API_KEY=YOUR_SCRAPELESS_API_KEY
 
 ### 2. Add the MCP server
 
-Open `~/.hermes/config.yaml` and merge this configuration, also provided in [mcp-config.yaml](mcp-config.yaml). If `mcp_servers` already exists, add `scrapeless` below it. Update an existing entry of that name rather than duplicating it, and preserve other settings.
+Open `~/.hermes/config.yaml` and merge this configuration, also provided in `mcp-config.yaml`. If `mcp_servers` already exists, add `scrapeless` below it. Update an existing entry of that name rather than duplicating it, and preserve other settings.
 
 ```yaml
 mcp_servers:
@@ -98,7 +96,7 @@ Confirm that `scrapeless` is enabled, its connection test succeeds, and the tool
 
 To inspect the connection in the interface, run `hermes dashboard`, open the local address printed in the terminal, and select **MCP**:
 
-[![Actual Scrapeless service configuration and connection test in Hermes](assets/hermes-mcp-config.png)](assets/hermes-mcp-config.png)
+![Actual Scrapeless service configuration and connection test in Hermes](assets/hermes-mcp-config.png)
 
 *1: Check the server command. 2: Select Test connection, then confirm the tool appears in the catalog.*
 
@@ -131,7 +129,7 @@ In the tool details, check that Hermes uses `mcp__scrapeless__scrape_markdown` w
 }
 ```
 
-[![Actual Hermes history showing the Scrapeless tool and target URL](assets/hermes-live-tool-call.png)](assets/hermes-live-tool-call.png)
+![Actual Hermes history showing the Scrapeless tool and target URL](assets/hermes-live-tool-call.png)
 
 *1: Check the extraction tool. 2: Confirm the target URL.*
 
@@ -139,11 +137,11 @@ In the tool details, check that Hermes uses `mcp__scrapeless__scrape_markdown` w
 
 ### 3. Read the result
 
-[![Original English checklist returned by Hermes](assets/hermes-live-checklist.png)](assets/hermes-live-checklist.png)
+![Original English checklist returned by Hermes](assets/hermes-live-checklist.png)
 
 *Hermes returns a source link and a checklist based on the page.*
 
-The example answer covers Git/curl/tar/SHA-256 utilities, the documented Python runtime, and the installer-managed uv tool. See the [sample checklist](examples/checklist.en.md) for the output format. The answer can vary as the source page changes.
+The example answer covers Git/curl/tar/SHA-256 utilities, the documented Python runtime, and the installer-managed uv tool. See `examples/checklist.en.md` for the output format. The answer can vary as the source page changes.
 
 Read or copy the answer in Hermes, and follow the source link to check the requirements for your platform.
 
@@ -185,7 +183,7 @@ Select **Code > Download ZIP** on this repository, extract it, and open the extr
 python3 hermes_reader.py demo
 ```
 
-This writes selected retained source text and English checklist items to `output/demo/` without model or Scrapeless requests. The included [sample checklist](examples/checklist.en.md) is an excerpt, not a new live result. On Windows, use `py -3` instead of `python3`; live execution also requires a Hermes-supported environment.
+This writes selected retained source text and English checklist items to `output/demo/` without model or Scrapeless requests. The included `examples/checklist.en.md` is an excerpt, not a new live result. On Windows, use `py -3` instead of `python3`; live execution also requires a Hermes-supported environment.
 
 ### Check compatibility and export a page
 
@@ -216,7 +214,7 @@ python3 hermes_reader.py run --config config.json --output output/first-live
 
 ### Configure another task
 
-Edit `url` and `expected_text` in [config.json](config.json). The target must be a public HTTPS URL without embedded credentials, query parameters, or fragments. `expected_text` contains case-sensitive phrases expected on that page. The optional `topic` focuses the answer on that source; it accepts 1-200 characters on one line.
+Edit `url` and `expected_text` in `config.json`. The target must be a public HTTPS URL without embedded credentials, query parameters, or fragments. `expected_text` contains case-sensitive phrases expected on that page. The optional `topic` focuses the answer on that source; it accepts 1-200 characters on one line.
 
 ```bash
 python3 hermes_reader.py run --config config.json --topic "Installation prerequisites" --output output/topic
@@ -234,7 +232,7 @@ python3 -m unittest discover -s tests -v
 python3 hermes_reader.py demo --output output/test-demo
 ```
 
-The tests and GitHub Actions workflow run offline. Keep credentials, session databases, and generated output out of commits. This project uses the [MIT license](LICENSE).
+The tests and GitHub Actions workflow run offline. Keep credentials, session databases, and generated output out of commits. This project is licensed under MIT; see `LICENSE`.
 
 ## Related projects
 
