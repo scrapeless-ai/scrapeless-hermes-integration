@@ -7,6 +7,13 @@ mcp_servers:
       SCRAPELESS_API_KEY: "${SCRAPELESS_API_KEY}"
     enabled: true
     tools:
-      include: ["scrape_markdown"]
+      include:
+        - google_search
+        - scrape_markdown
+        - browser_create
+        - browser_goto
+        - browser_get_text
+        - browser_click
+        - browser_close
       resources: false
       prompts: false
