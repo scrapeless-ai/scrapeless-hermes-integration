@@ -13,10 +13,10 @@ Connect Scrapeless MCP to Hermes, then ask Hermes to read a page and return a so
 **[Get your Scrapeless API key](https://app.scrapeless.com/passport/login?redirect=%2Fquick-start&utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-web-reader&utm_content=repository-readme)**
 
 <p align="center">
-  <a href="https://app.scrapeless.com/passport/login?redirect=%2Fquick-start&amp;utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-web-reader&amp;utm_content=repository-readme"><img src="assets/start-free.png" alt="Get started with Scrapeless" /></a>
-  <a href="https://www.scrapeless.com/en/blog?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-web-reader&amp;utm_content=repository-readme"><img src="assets/blog.png" alt="Read Scrapeless guides" /></a>
-  <a href="https://x.com/Scrapelessteam?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-web-reader&amp;utm_content=repository-readme"><img src="assets/x.png" alt="Follow Scrapeless on X" /></a>
-  <a href="https://www.linkedin.com/company/scrapeless/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-web-reader&amp;utm_content=repository-readme"><img src="assets/linkedin.png" alt="Follow Scrapeless on LinkedIn" /></a>
+  <a href="https://app.scrapeless.com/passport/login?redirect=%2Fquick-start&amp;utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-web-reader&amp;utm_content=repository-readme"><img src="assets/start-free.png" alt="Get started with Scrapeless" width="161" height="28" /></a>
+  <a href="https://www.scrapeless.com/en/blog?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-web-reader&amp;utm_content=repository-readme"><img src="assets/blog.png" alt="Read Scrapeless guides" width="168" height="28" /></a>
+  <a href="https://x.com/Scrapelessteam?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-web-reader&amp;utm_content=repository-readme"><img src="assets/x.png" alt="Follow Scrapeless on X" width="140" height="28" /></a>
+  <a href="https://www.linkedin.com/company/scrapeless/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-web-reader&amp;utm_content=repository-readme"><img src="assets/linkedin.png" alt="Follow Scrapeless on LinkedIn" width="190" height="28" /></a>
 </p>
 
 [Capabilities](#what-can-hermes-call) · [Prerequisites](#prerequisites) · [Configuration](#connection-configuration) · [Verify the connection](#verify-the-connection) · [Real example](#example-read-a-webpage-with-scrapeless) · [Tools and inputs](#tools-and-common-inputs) · [Troubleshooting](#troubleshooting) · [Optional Python exporter](#optional-example-python-file-export)
