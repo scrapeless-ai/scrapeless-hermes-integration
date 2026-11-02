@@ -23,14 +23,14 @@ Connect Scrapeless MCP to Hermes, then ask Hermes to research public product pag
 
 Connect Hermes to Scrapeless MCP to retrieve AI-generated answers, search Google, interact with cloud browsers, and extract web content through natural-language requests.
 
-| Product / capability | MCP tools | What you can do in Hermes |
-| --- | --- | --- |
-| **AI Scraper** | `ai_scraper` | Retrieve answers from ChatGPT, Gemini, Perplexity, Microsoft Copilot, Google AI Mode, Google AI Overview, Grok, and Alexa, including source references where returned. |
-| **Google Search API** | `google_search` | Search Google for result titles, links, snippets, and other information for source discovery, product research, and fact checking. |
-| **Agent Browser** | `browser_create`, `browser_close`, `browser_goto`, `browser_go_back`, `browser_go_forward`, `browser_click`, `browser_type`, `browser_press_key`, `browser_wait_for`, `browser_wait`, `browser_snapshot`, `browser_screenshot`, `browser_get_html`, `browser_get_text`, `browser_scroll`, `browser_scroll_to` | Create and close cloud browser sessions; navigate pages, go back and forward, click, type, press keys, wait, and scroll. Retrieve page structure snapshots, screenshots, HTML, or visible text. |
-| **Web Unlocker** | `scrape_html`, `scrape_markdown`, `scrape_screenshot` | Extract a webpage as HTML, Markdown, or a screenshot, with support for JavaScript rendering and supported website access protections. |
-| **Scraping API - Google Trends** | `google_trends` | Query keyword search interest over time, regional interest, related queries, and related topics. |
-| **Crawl** | `crawl_start`, `crawl_result`, `crawl_cancel` | Start a website crawl from a URL, set its scope and depth, retrieve results, or cancel a running job. |
+| Product category | Product / capability | MCP tools | Supported operations |
+| --- | --- | --- | --- |
+| **Browser & Crawl** | **Agent Browser** | `browser_create`, `browser_close`, `browser_goto`, `browser_go_back`, `browser_go_forward`, `browser_click`, `browser_type`, `browser_press_key`, `browser_wait_for`, `browser_wait`, `browser_snapshot`, `browser_screenshot`, `browser_get_html`, `browser_get_text`, `browser_scroll`, `browser_scroll_to` | Create or reuse a cloud browser session and close it when finished. Navigate to a URL, go back or forward, click elements, type into input fields, simulate key presses, wait for an element or a fixed duration, scroll to the page bottom or bring an element into view. Retrieve page structure snapshots, full HTML, visible text, or screenshots. |
+| **Browser & Crawl** | **Crawl** | `crawl_start`, `crawl_result`, `crawl_cancel` | Start an asynchronous crawl from a base URL and receive a job ID. Configure crawl scope and depth, poll the job until it finishes and retrieve the collected content, or cancel a running job by ID. |
+| **AI Scraper** | **AI platform scrapers** | `ai_scraper` | Create a task for ChatGPT, Gemini, Perplexity, Microsoft Copilot, Google AI Mode, Google AI Overview, Grok, or Amazon Alexa. Retrieve the returned answer and available source references. |
+| **Web Unlocker** | **Page extraction** | `scrape_html`, `scrape_markdown`, `scrape_screenshot` | Fetch a specified URL as full HTML or Markdown, or capture a high-quality webpage screenshot. Supports JavaScript rendering and supported website access protections. |
+| **Scraping API** | **Google Search API** | `google_search` | Search Google for information and retrieve result titles, links, snippets, and other returned search fields. Use the results to discover sources, research products, and support fact checking. |
+| **Scraping API** | **Google Trends** | `google_trends` | Retrieve Google Trends search-interest data, including interest over time, regional interest, related queries, and related topics. |
 
 ## Prerequisites
 
