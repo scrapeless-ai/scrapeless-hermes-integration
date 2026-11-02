@@ -71,18 +71,31 @@ mcp_servers:
     enabled: true
     tools:
       include:
+        - ai_scraper
         - google_search
-        - scrape_markdown
         - browser_create
-        - browser_goto
-        - browser_get_text
-        - browser_click
         - browser_close
+        - browser_goto
+        - browser_go_back
+        - browser_go_forward
+        - browser_click
+        - browser_type
+        - browser_press_key
+        - browser_wait_for
+        - browser_wait
+        - browser_screenshot
+        - browser_get_html
+        - browser_get_text
+        - browser_scroll
+        - browser_scroll_to
+        - scrape_html
+        - scrape_markdown
+        - scrape_screenshot
       resources: false
       prompts: false
 ```
 
-`npx` launches the pinned server version. `${SCRAPELESS_API_KEY}` references your saved key. `include` exposes the seven tools used by the product-research workflow. Keep the list aligned with the task; other tools remain unavailable.
+`npx` launches the pinned server version. `${SCRAPELESS_API_KEY}` references your saved key. `include` exposes the 20 tools covering the capabilities in the table above: AI Scraper, Google Search, browser navigation and interaction, and HTML, Markdown, and screenshot extraction. Service calls require the relevant account access and available credits.
 
 Restart Hermes after saving so it loads the key and configuration. For later changes to tool configuration alone, use `/reload-mcp` in chat. See the [Hermes MCP configuration reference](https://hermes-agent.nousresearch.com/docs/reference/mcp-config-reference) for field details.
 
