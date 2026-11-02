@@ -34,13 +34,18 @@ Connect Hermes to Scrapeless MCP to retrieve AI-generated answers, search Google
 ## Prerequisites
 
 - **Hermes Agent**, installed with a tool-capable model. Choose any tool-capable model available in your Hermes installation.
-- **Node.js, npm, and npx** in the same environment as Hermes, to launch the MCP server. Configure these inside WSL if you use WSL.
+- **For the manual Stdio option only:** Node.js, npm, and npx in the same environment as Hermes, to launch the MCP server. Configure these inside WSL if you use WSL. The online Streamable HTTP option does not require a local MCP server process.
 - **A Scrapeless API key**, available under **Settings > API Key Management** in the dashboard, with access and credits for the service you need.
 
 If Hermes is not installed, follow the [official installation guide](https://hermes-agent.nousresearch.com/docs/getting-started/installation), run `hermes model` to configure your provider, and confirm ordinary chat works. Model credentials and the Scrapeless key are separate, with separate usage charges.
 
 ```bash
 hermes --version
+```
+
+For the manual Stdio option, also check:
+
+```bash
 node --version
 npx --version
 ```
@@ -49,7 +54,41 @@ The paths below use the default `~/.hermes/` profile. For a separate profile or 
 
 ## Connection configuration
 
-### 1. Save your Scrapeless API key
+Choose one connection method for the `scrapeless` server: ask Hermes to configure the online MCP service, or use the manual Stdio configuration below.
+
+### Option A: connect to the online MCP with one prompt
+
+With Hermes running and your Scrapeless API key already saved in a local file, replace `/path/to/your/key-file.md` with your own file path and send this request:
+
+```text
+Please configure Scrapeless MCP for Hermes Agent according to the official Scrapeless MCP documentation at https://docs.scrapeless.com/en/docs/developer-tools/scrapeless-mcp/overview/.
+Use Streamable HTTP at https://api.scrapeless.com/mcp and read my existing API key from /path/to/your/key-file.md for the x-api-token header.
+Keep the key in the active Hermes profile's local secret storage and reference it from the configuration; do not print the key in chat.
+Preserve all other configuration, update an existing scrapeless entry rather than creating a duplicate, and verify the configuration, connection, and available tools.
+Report the verification results in English without exposing the key or its private source path.
+```
+
+Hermes needs permission to read the specified key file, update its active profile, and run the verification commands. The path above is a placeholder; do not paste the key itself into the conversation.
+
+The following English excerpt is translated from the user's original Chinese-language Hermes response from November 2, 2026:
+
+> **Verification results**
+>
+> - `hermes config check` — Passed; `config.yaml` parsed successfully.
+> - `hermes mcp list` — `scrapeless` is enabled.
+> - `hermes mcp test scrapeless` — Connected successfully in 7,294 ms; discovered 25 tools.
+>
+> Available tools cover `ai_scraper`, three `crawl_*` tools, `google_search`, `google_trends`, `scrape_html`, `scrape_markdown`, `scrape_screenshot`, and 16 `browser_*` tools for cloud browser automation.
+>
+> **Existing configuration preserved**
+>
+> Only two additions were made: a key entry in `.env` and an `mcp_servers` block in `config.yaml`. Existing database, model, terminal, platform, and other settings were left unchanged.
+
+This records Hermes's reported connection and tool-discovery result, not successful execution of every discovered tool. Tool counts may change with the online service; this example reported 25, while the manual configuration below selects 20. The prompt above uses a placeholder instead of the user's private key-file path and adds instructions to keep the key out of chat output.
+
+### Option B: configure Stdio manually
+
+#### 1. Save your Scrapeless API key
 
 Use `.env.example` as a reference. Open `~/.hermes/.env` in a text editor and add this line. Replace the placeholder and save. If the line already exists, update its value instead of adding another copy.
 
@@ -57,7 +96,7 @@ Use `.env.example` as a reference. Open `~/.hermes/.env` in a text editor and ad
 SCRAPELESS_API_KEY=YOUR_SCRAPELESS_API_KEY
 ```
 
-### 2. Add the MCP server
+#### 2. Add the MCP server
 
 Open `~/.hermes/config.yaml` and merge this configuration, also provided in `mcp-config.yaml`. If `mcp_servers` already exists, add `scrapeless` below it. Update an existing entry of that name rather than duplicating it, and preserve other settings.
 
