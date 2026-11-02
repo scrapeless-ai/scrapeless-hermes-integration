@@ -20,6 +20,7 @@ mcp_servers:
         - browser_press_key
         - browser_wait_for
         - browser_wait
+        - browser_snapshot
         - browser_screenshot
         - browser_get_html
         - browser_get_text
@@ -28,5 +29,9 @@ mcp_servers:
         - scrape_html
         - scrape_markdown
         - scrape_screenshot
+        - google_trends
+        - crawl_start
+        - crawl_result
+        - crawl_cancel
       resources: false
       prompts: false

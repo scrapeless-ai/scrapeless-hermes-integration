@@ -23,13 +23,14 @@ Connect Scrapeless MCP to Hermes, then ask Hermes to research public product pag
 
 Connect Hermes to Scrapeless MCP to retrieve AI-generated answers, search Google, interact with cloud browsers, and extract web content through natural-language requests.
 
-| Product | What you can do in Hermes | MCP tools |
+| Product / capability | MCP tools | What you can do in Hermes |
 | --- | --- | --- |
-| **AI Scraper** | Retrieve answers from ChatGPT, Gemini, Perplexity, Microsoft Copilot, Google AI Mode, Google AI Overview, Grok, and Alexa, including source references where returned. Use the results to compare answers and research how products or topics appear across AI platforms. | `ai_scraper` |
-| **Google Search API** | Search Google for relevant pages and sources. Use search results to discover official websites, research competitors, and find supporting evidence for comparisons. | `google_search` |
-| **Agent Browser** | Open and navigate live webpages, click elements, type text, press keys, scroll, and wait for content. Extract visible text or HTML and capture screenshots to inspect interactive pages. | `browser_create`, `browser_goto`, `browser_click`, `browser_type`, `browser_get_text`, `browser_screenshot`, and other browser tools |
-| **Web Unlocker** | Retrieve content from JavaScript-rendered and protected webpages as HTML, Markdown, or screenshots. Use the extracted content to read pricing pages, product documentation, and other research sources. | `scrape_html`, `scrape_markdown`, `scrape_screenshot` |
-| **Scraping API** | Access structured Google Search data through the MCP integration. Google Search API is part of Scrapeless Scraping API; this integration does not imply that every Scraping API source is exposed as an MCP tool. | `google_search` |
+| **AI Scraper** | `ai_scraper` | Retrieve answers from ChatGPT, Gemini, Perplexity, Microsoft Copilot, Google AI Mode, Google AI Overview, Grok, and Alexa, including source references where returned. |
+| **Google Search API** | `google_search` | Search Google for result titles, links, snippets, and other information for source discovery, product research, and fact checking. |
+| **Agent Browser** | `browser_create`, `browser_close`, `browser_goto`, `browser_go_back`, `browser_go_forward`, `browser_click`, `browser_type`, `browser_press_key`, `browser_wait_for`, `browser_wait`, `browser_snapshot`, `browser_screenshot`, `browser_get_html`, `browser_get_text`, `browser_scroll`, `browser_scroll_to` | Create and close cloud browser sessions; navigate pages, go back and forward, click, type, press keys, wait, and scroll. Retrieve page structure snapshots, screenshots, HTML, or visible text. |
+| **Web Unlocker** | `scrape_html`, `scrape_markdown`, `scrape_screenshot` | Extract a webpage as HTML, Markdown, or a screenshot, with support for JavaScript rendering and supported website access protections. |
+| **Scraping API - Google Trends** | `google_trends` | Query keyword search interest over time, regional interest, related queries, and related topics. |
+| **Crawl** | `crawl_start`, `crawl_result`, `crawl_cancel` | Start a website crawl from a URL, set its scope and depth, retrieve results, or cancel a running job. |
 
 ## Prerequisites
 
@@ -74,7 +75,7 @@ The following Hermes response reports successful configuration and connection to
 
 ![Hermes verification results showing a successful online MCP connection and 25 discovered tools](assets/hermes-online-mcp-verification.png)
 
-*User-provided Hermes response from November 2, 2026: configuration check passed, Scrapeless enabled, and 25 tools discovered in 7,294 ms. This reports connection and tool discovery; individual tool execution is separate. The online tool count may change, while the manual configuration below selects 20 tools.*
+*User-provided Hermes response from November 2, 2026: configuration check passed, Scrapeless enabled, and 25 tools discovered in 7,294 ms. This reports connection and tool discovery; individual tool execution is separate. The online tool count may change; the manual configuration below selects the same 25 tool names.*
 
 ### Option B: configure Stdio manually
 
@@ -112,6 +113,7 @@ mcp_servers:
         - browser_press_key
         - browser_wait_for
         - browser_wait
+        - browser_snapshot
         - browser_screenshot
         - browser_get_html
         - browser_get_text
@@ -120,11 +122,15 @@ mcp_servers:
         - scrape_html
         - scrape_markdown
         - scrape_screenshot
+        - google_trends
+        - crawl_start
+        - crawl_result
+        - crawl_cancel
       resources: false
       prompts: false
 ```
 
-`npx` launches the pinned server version. `${SCRAPELESS_API_KEY}` references your saved key. `include` exposes the 20 tools covering the capabilities in the table above: AI Scraper, Google Search, browser navigation and interaction, and HTML, Markdown, and screenshot extraction. Service calls require the relevant account access and available credits.
+`npx` launches the pinned server version. `${SCRAPELESS_API_KEY}` references your saved key. `include` exposes all 25 tools listed in the capability table above: AI Scraper, Google Search, Agent Browser, Web Unlocker extraction, Google Trends, and website crawling. Service calls require the relevant account access and available credits.
 
 Restart Hermes after saving so it loads the key and configuration. For later changes to tool configuration alone, use `/reload-mcp` in chat. See the [Hermes MCP configuration reference](https://hermes-agent.nousresearch.com/docs/reference/mcp-config-reference) for field details.
 
