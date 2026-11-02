@@ -1,36 +1,77 @@
 <p align="center">
-  <a href="https://app.scrapeless.com/passport/login?redirect=%2Fquick-start&utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-integration&utm_content=repository-readme"><img src="assets/scrapeless-logo.png" alt="Scrapeless" width="280" style="width:280px;max-width:100%;height:auto" /></a>
+  <a href="https://app.scrapeless.com/passport/login?redirect=%2Fquick-start&amp;utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-integration&amp;utm_content=repository-readme"><img src="assets/hermes-integration-banner.png" alt="Hermes Agent and Scrapeless MCP: web search, extraction, cloud browser automation, and AI answers." width="100%" /></a>
 </p>
 
 # Use Scrapeless in Hermes Agent
 
-**[Scrapeless MCP documentation](https://docs.scrapeless.com/en/docs/developer-tools/scrapeless-mcp/overview/?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-integration&utm_content=repository-readme) · [Hermes MCP integration guide](https://www.scrapeless.com/en/blog/hermes-agent-scrapeless-mcp?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-integration&utm_content=repository-readme)**
-
-Give Hermes a request. It can use Scrapeless to search the web, extract page content, or operate a cloud browser, then organize the returned information into a useful answer.
-
-Connect Scrapeless MCP to Hermes, then ask Hermes to research public product pages and return a source-linked comparison.
-
-**[Get your Scrapeless API key](https://app.scrapeless.com/passport/login?redirect=%2Fquick-start&utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-integration&utm_content=repository-readme)**
-
-<p align="center">
+<p align="left">
   <a href="https://app.scrapeless.com/passport/login?redirect=%2Fquick-start&amp;utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-integration&amp;utm_content=repository-readme"><img src="assets/start-free.png" alt="Get started with Scrapeless" width="161" height="28" /></a>
   <a href="https://www.scrapeless.com/en/blog?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-integration&amp;utm_content=repository-readme"><img src="assets/blog.png" alt="Read Scrapeless guides" width="168" height="28" /></a>
   <a href="https://x.com/Scrapelessteam?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-integration&amp;utm_content=repository-readme"><img src="assets/x.png" alt="Follow Scrapeless on X" width="140" height="28" /></a>
   <a href="https://www.linkedin.com/company/scrapeless/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-integration&amp;utm_content=repository-readme"><img src="assets/linkedin.png" alt="Follow Scrapeless on LinkedIn" width="190" height="28" /></a>
 </p>
 
+Connect Hermes Agent to Scrapeless MCP to search the web, extract page content, and operate a cloud browser through natural-language requests.
+
+**[Get your Scrapeless API key with $5 Free credits!](https://app.scrapeless.com/passport/login?redirect=%2Fquick-start&utm_source=github&utm_medium=referral&utm_campaign=scrapeless-python-serp-monitor&utm_content=repository-readme)**
+
+- **Documentation:** [Scrapeless MCP documentation](https://docs.scrapeless.com/en/docs/developer-tools/scrapeless-mcp/overview/?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-integration&utm_content=repository-readme)
+
 ## What can Hermes do with Scrapeless MCP?
 
 Connect Hermes to Scrapeless MCP to retrieve AI-generated answers, search Google, interact with cloud browsers, and extract web content through natural-language requests.
 
-| Product category | Product / capability | MCP tools | Supported operations |
-| --- | --- | --- | --- |
-| **Browser & Crawl** | **Agent Browser** | `browser_create`, `browser_close`, `browser_goto`, `browser_go_back`, `browser_go_forward`, `browser_click`, `browser_type`, `browser_press_key`, `browser_wait_for`, `browser_wait`, `browser_snapshot`, `browser_screenshot`, `browser_get_html`, `browser_get_text`, `browser_scroll`, `browser_scroll_to` | Create or reuse a cloud browser session and close it when finished. Navigate to a URL, go back or forward, click elements, type into input fields, simulate key presses, wait for an element or a fixed duration, scroll to the page bottom or bring an element into view. Retrieve page structure snapshots, full HTML, visible text, or screenshots. |
-| **Browser & Crawl** | **Crawl** | `crawl_start`, `crawl_result`, `crawl_cancel` | Start an asynchronous crawl from a base URL and receive a job ID. Configure crawl scope and depth, poll the job until it finishes and retrieve the collected content, or cancel a running job by ID. |
-| **AI Scraper** | **AI platform scrapers** | `ai_scraper` | Create a task for ChatGPT, Gemini, Perplexity, Microsoft Copilot, Google AI Mode, Google AI Overview, Grok, or Amazon Alexa. Retrieve the returned answer and available source references. |
-| **Web Unlocker** | **Page extraction** | `scrape_html`, `scrape_markdown`, `scrape_screenshot` | Fetch a specified URL as full HTML or Markdown, or capture a high-quality webpage screenshot. Supports JavaScript rendering and supported website access protections. |
-| **Scraping API** | **Google Search API** | `google_search` | Search Google for information and retrieve result titles, links, snippets, and other returned search fields. Use the results to discover sources, research products, and support fact checking. |
-| **Scraping API** | **Google Trends** | `google_trends` | Retrieve Google Trends search-interest data, including interest over time, regional interest, related queries, and related topics. |
+### Browser & Crawl
+
+#### Agent Browser
+
+| MCP tool | Description |
+| --- | --- |
+| `browser_create` | Create or reuse a Scrapeless cloud browser session. |
+| `browser_close` | Close the current session by disconnecting the cloud browser. |
+| `browser_goto` | Navigate to a specified URL. |
+| `browser_go_back` | Go back one step in browser history. |
+| `browser_go_forward` | Go forward one step in browser history. |
+| `browser_click` | Click a specified page element. |
+| `browser_type` | Type text into a specified input field. |
+| `browser_press_key` | Simulate a key press. |
+| `browser_wait_for` | Wait for a specified page element to appear. |
+| `browser_wait` | Pause for a specified duration. |
+| `browser_snapshot` | Read a snapshot of the page structure. |
+| `browser_screenshot` | Capture a screenshot of the current page. |
+| `browser_get_html` | Get the full HTML of the current page. |
+| `browser_get_text` | Get the visible text of the current page. |
+| `browser_scroll` | Scroll to the bottom of the page. |
+| `browser_scroll_to` | Scroll a specified element into view. |
+
+#### Crawl
+
+| MCP tool | Description |
+| --- | --- |
+| `crawl_start` | Start an asynchronous crawl from a base URL and return its job ID. |
+| `crawl_result` | Poll a crawl job by ID until it finishes and return the collected data. |
+| `crawl_cancel` | Cancel a running crawl job by ID. |
+
+### AI Scraper
+
+| MCP tool | Description |
+| --- | --- |
+| `ai_scraper` | Create an AI Scraper task for ChatGPT, Gemini, Perplexity, Microsoft Copilot, Google AI Mode, Google AI Overview, Grok, or Amazon Alexa. |
+
+### Web Unlocker
+
+| MCP tool | Description |
+| --- | --- |
+| `scrape_html` | Fetch a URL and return its full HTML content. |
+| `scrape_markdown` | Fetch a URL and return its content as Markdown. |
+| `scrape_screenshot` | Capture a high-quality screenshot of a webpage. |
+
+### Scraping API
+
+| MCP tool | Description |
+| --- | --- |
+| `google_search` | Search Google for webpage results using a query, language, and country; return positions, titles, links, snippets, highlighted snippets, and sources. |
+| `google_trends` | Registered tool for Google Trends data. Backend availability is not confirmed; tool discovery alone does not establish a successful data request. |
 
 ## Prerequisites
 
