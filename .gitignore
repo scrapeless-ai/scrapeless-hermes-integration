@@ -1,3 +1,4 @@
+# Keep local credentials, caches, and generated output out of version control.
 .venv/
 .env
 output/
