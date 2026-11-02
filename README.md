@@ -70,21 +70,11 @@ Report the verification results in English without exposing the key or its priva
 
 Hermes needs permission to read the specified key file, update its active profile, and run the verification commands. The path above is a placeholder; do not paste the key itself into the conversation.
 
-The following English excerpt is translated from the user's original Chinese-language Hermes response from November 2, 2026:
+The following Hermes response reports successful configuration and connection to the online MCP service:
 
-> **Verification results**
->
-> - `hermes config check` — Passed; `config.yaml` parsed successfully.
-> - `hermes mcp list` — `scrapeless` is enabled.
-> - `hermes mcp test scrapeless` — Connected successfully in 7,294 ms; discovered 25 tools.
->
-> Available tools cover `ai_scraper`, three `crawl_*` tools, `google_search`, `google_trends`, `scrape_html`, `scrape_markdown`, `scrape_screenshot`, and 16 `browser_*` tools for cloud browser automation.
->
-> **Existing configuration preserved**
->
-> Only two additions were made: a key entry in `.env` and an `mcp_servers` block in `config.yaml`. Existing database, model, terminal, platform, and other settings were left unchanged.
+![Hermes verification results showing a successful online MCP connection and 25 discovered tools](assets/hermes-online-mcp-verification.png)
 
-This records Hermes's reported connection and tool-discovery result, not successful execution of every discovered tool. Tool counts may change with the online service; this example reported 25, while the manual configuration below selects 20. The prompt above uses a placeholder instead of the user's private key-file path and adds instructions to keep the key out of chat output.
+*User-provided Hermes response from November 2, 2026: configuration check passed, Scrapeless enabled, and 25 tools discovered in 7,294 ms. This reports connection and tool discovery; individual tool execution is separate. The online tool count may change, while the manual configuration below selects 20 tools.*
 
 ### Option B: configure Stdio manually
 
