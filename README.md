@@ -19,17 +19,17 @@ Connect Scrapeless MCP to Hermes, then ask Hermes to research public product pag
   <a href="https://www.linkedin.com/company/scrapeless/?utm_source=github&amp;utm_medium=referral&amp;utm_campaign=scrapeless-hermes-integration&amp;utm_content=repository-readme"><img src="assets/linkedin.png" alt="Follow Scrapeless on LinkedIn" width="190" height="28" /></a>
 </p>
 
-## What can Hermes call?
+## What can Hermes do with Scrapeless MCP?
 
-Hermes interprets your request and organizes the answer. Scrapeless provides web data and browser tools, available to Hermes through MCP.
+Connect Hermes to Scrapeless MCP to retrieve AI-generated answers, search Google, interact with cloud browsers, and extract web content through natural-language requests.
 
-| Capability | What Hermes can do | Example tools |
+| Product | What you can do in Hermes | MCP tools |
 | --- | --- | --- |
-| Page extraction | Read a specified public page as Markdown | `scrape_markdown` |
-| Google Search | Find sources by keyword | `google_search` |
-| Cloud browser | Open pages, click, type, and read page content | `browser_create`, `browser_goto`, `browser_click`, and others |
-
-The configuration below enables **search, Markdown extraction, and a browser workflow**. Service calls require the corresponding account permissions and credits. See the [Scrapeless MCP documentation](https://docs.scrapeless.com/en/docs/developer-tools/scrapeless-mcp/overview/?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-integration&utm_content=repository-readme) for the tool catalog.
+| **AI Scraper** | Retrieve answers from ChatGPT, Gemini, Perplexity, Microsoft Copilot, Google AI Mode, Google AI Overview, Grok, and Alexa, including source references where returned. Use the results to compare answers and research how products or topics appear across AI platforms. | `ai_scraper` |
+| **Google Search API** | Search Google for relevant pages and sources. Use search results to discover official websites, research competitors, and find supporting evidence for comparisons. | `google_search` |
+| **Agent Browser** | Open and navigate live webpages, click elements, type text, press keys, scroll, and wait for content. Extract visible text or HTML and capture screenshots to inspect interactive pages. | `browser_create`, `browser_goto`, `browser_click`, `browser_type`, `browser_get_text`, `browser_screenshot`, and other browser tools |
+| **Web Unlocker** | Retrieve content from JavaScript-rendered and protected webpages as HTML, Markdown, or screenshots. Use the extracted content to read pricing pages, product documentation, and other research sources. | `scrape_html`, `scrape_markdown`, `scrape_screenshot` |
+| **Scraping API** | Access structured Google Search data through the MCP integration. Google Search API is part of Scrapeless Scraping API; this integration does not imply that every Scraping API source is exposed as an MCP tool. | `google_search` |
 
 ## Prerequisites
 
