@@ -15,7 +15,7 @@ Connect Hermes Agent to Scrapeless MCP to search the web, extract page content, 
 
 **[Get your Scrapeless API key with $5 Free credits!](https://app.scrapeless.com/passport/login?redirect=%2Fquick-start&utm_source=github&utm_medium=referral&utm_campaign=scrapeless-python-serp-monitor&utm_content=repository-readme)**
 
-- **Documentation:** [Scrapeless MCP documentation](https://docs.scrapeless.com/en/docs/developer-tools/scrapeless-mcp/overview/?utm_source=github&utm_medium=referral&utm_campaign=scrapeless-hermes-integration&utm_content=repository-readme)
+- **Documentation:** [Hermes+Scrapeless](https://docs.scrapeless.com/en/integrations/hermes/)
 
 ## What can Hermes do with Scrapeless MCP?
 
